@@ -1,0 +1,3 @@
+[submodule "documents/MM-bci"]
+	path = documents/MM-bci
+	url = https://github.com/aatika22660-lang/back-end-maybe.git
