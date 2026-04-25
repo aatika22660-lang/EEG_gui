@@ -1,18 +1,18 @@
 % startup.m
-addpath('/Users/aatikashaikh/project_gui/documents/eeglab2026.0.0');
+addpath('C:\Users\Azlaan\Desktop\EEG_gui\documents\eeglab2026.0.0');
 eeglab('nogui');
 
-addpath(genpath('/Users/aatikashaikh/project_gui/src'));
+addpath(genpath('C:\Users\Azlaan\Desktop\EEG_gui\src'));
 
-addpath(genpath('/Users/aatikashaikh/project_gui/refrences'));
+addpath(genpath('C:\Users\Azlaan\Desktop\EEG_gui\refrences'));
 
-addpath('/Users/aatikashaikh/project_gui/sample_data');
+addpath('C:\Users\Azlaan\Desktop\EEG_gui\sample_data');
 
-addpath(genpath('/Users/aatikashaikh/project_gui/src/MotorImageryData'));
+addpath(genpath('C:\Users\Azlaan\Desktop\EEG_gui\src\MotorImageryData'));
 
-addpath('/Users/aatikashaikh/project_gui/documents/MM-bci');
+addpath('C:\Users\Azlaan\Desktop\EEG_gui\documents\MM-bci');
 
-addpath('/Users/aatikashaikh/project_gui/automagic-master/automagic-master');
+addpath('C:\Users\Azlaan\Desktop\EEG_gui\automagic-master\automagic-master');
 
 
 % have these add ons pls
