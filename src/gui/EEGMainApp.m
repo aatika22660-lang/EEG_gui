@@ -929,8 +929,11 @@ classdef EEGMainApp < matlab.apps.AppBase
                     switch algo
                         case 'LMS'
                             for n = order:N
-                                xv = x(n:-1:n-order+1)'; y(n) = w'*xv;
-                                e = x(n)-y(n); w = w + 2*mu*e*xv;
+                                 xv = x(n:-1:n-order+1)';
+                                 y(n) = w'*xv;
+                                 e = x(n) - y(n);
+                                 power = xv'*xv + 1e-8;
+                                 w = w + (mu / power) * e * xv;
                             end
                         case 'RLS'
                             lambda = 0.99; P_mat = (1/mu)*eye(order);
@@ -942,6 +945,9 @@ classdef EEGMainApp < matlab.apps.AppBase
                             end
                     end
                     denoised(c,:) = x - y;
+                    if max(abs(denoised(c,:))) > 1e6
+                        denoised(c,:) = x;  % fallback to original if filter blew up
+                    end
                 end
                 plot(app.AdaptAxesAfter, t, denoised(ch,:), 'Color',[0.10 0.55 0.25], 'LineWidth', 0.5);
                 title(app.AdaptAxesAfter,'After Adaptive Filter (Ch 1)');
@@ -1438,7 +1444,7 @@ classdef EEGMainApp < matlab.apps.AppBase
             % ══════════════════════════════════════════════════════════════
             %  PRE-PROCESSING PIPELINE TAB
             % ══════════════════════════════════════════════════════════════
-            P = app.PipelineTab;
+             P = app.PipelineTab;
 
             % FIX 1: reduced font size and adjusted positions to prevent overlap
             hdr = uilabel(P);
@@ -1779,13 +1785,13 @@ classdef EEGMainApp < matlab.apps.AppBase
             backBtn3.FontColor=[1 1 1]; backBtn3.BackgroundColor=[0.22 0.22 0.22];
             backBtn3.ButtonPushedFcn=@(~,~) set(app.ICATab,'Visible','off');
 
-            hdr=uilabel(P); hdr.Position=[205 608 500 30]; hdr.Text='ICA Artifact Removal';
-            hdr.FontSize=20; hdr.FontWeight='bold'; hdr.FontColor=TXT;
-            sub=uilabel(P); sub.Position=[30 585 900 20];
+            hdr=uilabel(P); hdr.Position=[205 620 600 26]; hdr.Text='ICA Artifact Removal';
+            hdr.FontSize=18; hdr.FontWeight='bold'; hdr.FontColor=TXT;
+            sub=uilabel(P); sub.Position=[30 598 900 18];
             sub.Text='Run ICA decomposition, inspect the inline component topoplots, then remove artifact components by number.';
-            sub.FontSize=12; sub.FontColor=SUB;
+            sub.FontSize=11; sub.FontColor=SUB;
 
-            step1Card=uipanel(P); step1Card.Position=[30 568 920 40];
+            step1Card=uipanel(P); step1Card.Position=[30 545 920 48];
             step1Card.BackgroundColor=[0.078 0.078 0.078]; step1Card.BorderType='line';
             app.ICARunBtn=uibutton(step1Card,'push'); app.ICARunBtn.Position=[30 4 120 30];
             app.ICARunBtn.Text='Run ICA'; app.ICARunBtn.FontSize=12; app.ICARunBtn.FontWeight='bold';
@@ -1795,7 +1801,7 @@ classdef EEGMainApp < matlab.apps.AppBase
                 'Text','Decomposes signal into independent components (runica – extended infomax). Topoplots appear below.',...
                 'FontColor',SUB,'FontSize',10);
 
-            resultsCardICA=uipanel(P); resultsCardICA.Position=[30 533 920 30];
+            resultsCardICA=uipanel(P); resultsCardICA.Position=[30 510 920 30];
             resultsCardICA.BackgroundColor=[0.10 0.10 0.10]; resultsCardICA.BorderType='line';
             resultsBadgeICA=uibutton(resultsCardICA,'push'); resultsBadgeICA.Position=[10 3 68 22];
             resultsBadgeICA.Text='RESULTS'; resultsBadgeICA.FontSize=8; resultsBadgeICA.FontWeight='bold';
@@ -1804,7 +1810,7 @@ classdef EEGMainApp < matlab.apps.AppBase
             app.ICAStatusLabel.Text='Run ICA above to see results here.';
             app.ICAStatusLabel.FontSize=11; app.ICAStatusLabel.FontColor=SUB; app.ICAStatusLabel.WordWrap='on';
 
-            app.ICATopoPanel=uipanel(P); app.ICATopoPanel.Position=[30 155 920 373];
+            app.ICATopoPanel=uipanel(P); app.ICATopoPanel.Position=[30 155 920 350];
             app.ICATopoPanel.BackgroundColor=[0.078 0.078 0.078]; app.ICATopoPanel.BorderType='line';
             app.ICATopoPanel.Title='  Component Topoplots  (populated after Run ICA)';
             app.ICATopoPanel.FontSize=11; app.ICATopoPanel.FontWeight='bold';
@@ -1864,7 +1870,6 @@ classdef EEGMainApp < matlab.apps.AppBase
             app.ICAVizBtn.FontColor=[1 1 1]; app.ICAVizBtn.BackgroundColor=[0.08 0.32 0.55];
             app.ICAVizBtn.Visible='off';
             app.ICAVizBtn.ButtonPushedFcn=createCallbackFcn(app,@VizPlotBtnPushed,true);
-
             % ══════════════════════════════════════════════════════════════
             %  VISUALIZE TAB (hidden placeholder)
             % ══════════════════════════════════════════════════════════════
