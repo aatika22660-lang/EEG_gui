@@ -1245,7 +1245,7 @@ classdef EEGMainApp < matlab.apps.AppBase
                 app.(tabProps{i}).BackgroundColor = BG;
             end
             app.VisualizeTab = uitab(app.TabGroup);
-            app.VisualizeTab.Title = '';
+            app.VisualizeTab.Title = '  Visualize EEG  ';
             app.VisualizeTab.BackgroundColor = BG;
             app.TabGroup.SelectedTab = app.LoadTab;
 
