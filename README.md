@@ -33,8 +33,6 @@ Below are three screenshots from the application. I updated the README to use th
 
 ![Channel timeseries view (raw EEG signal)](docs/screenshots/tab1.png)
 
-Tip: if you want to control display size, use an HTML `<img>` tag in the README:
-
 <img src="docs/screenshots/tab1.png" alt="Channel timeseries view" width="800"/>
 
 ## Features
