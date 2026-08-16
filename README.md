@@ -19,22 +19,23 @@ A lightweight GUI application for loading, visualizing, and interacting with EEG
 EEG_gui is a graphical interface to explore EEG recordings, perform preprocessing and denoising, and visualize channels and topographies. It is built to make common EEG tasks simple and interactive.
 
 ## Screenshots
-Below are three screenshots from the application. I added your images into `docs/screenshots/` so they will render in the README.
+Below are three screenshots from the application. I updated the README to use the image files you uploaded into `docs/screenshots/`.
 
 - Image 1 — Landing / 3D brain model
 
-![Landing / 3D brain model](docs/screenshots/screenshot1.png)
+![Landing / 3D brain model](docs/screenshots/landingpage.png)
 
-- Image 2 — 3D brain with electrode positions
+- Image 2 — Landing animation / electrode overlay
 
-![3D brain with electrode positions](docs/screenshots/screenshot2.png)
+![Landing animation / electrode overlay](docs/screenshots/landingpageanimation.png)
 
 - Image 3 — Channel timeseries view (raw EEG signal)
 
-![Channel timeseries view (raw EEG signal)](docs/screenshots/screenshot3.png)
+![Channel timeseries view (raw EEG signal)](docs/screenshots/tab1.png)
 
-Tip: if you want to control display size, use an HTML <img> tag in the README:
-<img src="docs/screenshots/screenshot3.png" alt="Channel timeseries view" width="800"/>
+Tip: if you want to control display size, use an HTML `<img>` tag in the README:
+
+<img src="docs/screenshots/tab1.png" alt="Channel timeseries view" width="800"/>
 
 ## Features
 - Multi-channel plotting with zoom/pan
@@ -100,5 +101,5 @@ Developer notes:
 Specify your license (e.g., MIT). See LICENSE file.
 
 ## Contact
-Maintainers: Aatika Asim <asimaatika@gmail.com> & Mohammad Azlaan  
+Maintainer: Your Name <youremail@example.com>  
 Repo: https://github.com/aatika22660-lang/EEG_gui
