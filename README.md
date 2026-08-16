@@ -99,5 +99,5 @@ Developer notes:
 Specify your license (e.g., MIT). See LICENSE file.
 
 ## Contact
-Maintainer: Your Name <youremail@example.com>  
+Maintainers: Aatika Asim <asimaatika@gmail.com> & Mohammad Azlaan 
 Repo: https://github.com/aatika22660-lang/EEG_gui
